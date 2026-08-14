@@ -30,10 +30,13 @@ final class NewContentElementPreviewRenderer
             $drawItem = false;
             $headerContent = '';
 
-            if (!empty($row['pi_flexform'])) {
-                /** @var FlexFormTools $FlexFormTools */
-                $flexFormService = GeneralUtility::makeInstance(FlexFormTools::class);
+            if (empty($row['pi_flexform'])) {
+                $event->setPreviewContent('');
+                return;
             }
+
+            /** @var FlexFormTools $FlexFormTools */
+            $flexFormService = GeneralUtility::makeInstance(FlexFormTools::class);
 
             $options = [];
             $flexFormAsArray = GeneralUtility::xml2array($row['pi_flexform']);
