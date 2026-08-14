@@ -20,7 +20,7 @@ jobs:
   resolve:
     name: Analyze and Resolve Issue
     if: |
-      github.repository == 'vivek-nitsan/ns_license' &&
+      github.repository == 'vivek-nitsan/ns_timeline' &&
       (
         github.event_name == 'issues' ||
         (
