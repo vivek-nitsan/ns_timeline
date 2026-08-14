@@ -1,0 +1,63 @@
+# Grab all the constant
+plugin {
+    ns_timeline {
+        settings {
+            enableThemeColor = {$ns_timeline.website.settings.enableThemeColor}
+            themeColor = {$ns_timeline.website.settings.themeColor}
+            
+        }
+    }
+}
+
+
+// Initiate all the css-together
+page {
+    
+    includeCSS {
+        310 = EXT:ns_timeline/Resources/Public/css/reset.css
+        320 = EXT:ns_timeline/Resources/Public/css/animate.min.css
+        330 = EXT:ns_timeline/Resources/Public/css/default.min.css
+        340 = EXT:ns_timeline/Resources/Public/css/demo.css
+        350 = EXT:ns_timeline/Resources/Public/font-awesome/css/font-awesome.css
+        
+    }
+}    
+
+tt_content {
+    nstimeline = FLUIDTEMPLATE
+    nstimeline {
+        templateRootPaths.200 = EXT:ns_timeline/Resources/Private/Templates/
+        partialRootPaths.300 = EXT:ns_timeline/Resources/Private/Partials/
+        
+        templateName = NsTimeline
+        dataProcessing {
+            101 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+            101 {
+                references.fieldName = image
+                as = image
+            }
+            201 = NITSAN\NsTimeline\DataProcessing\DefaultProcessor
+        }
+    }
+}
+
+# Get default content
+lib {
+    contentElement {
+        templateRootPaths.200 = EXT:ns_timeline/Resources/Private/Templates/
+        partialRootPaths.300 = EXT:ns_timeline/Resources/Private/Partials/
+    }
+
+    enableThemeColor = TEXT
+    enableThemeColor {
+        value = {$ns_timeline.website.settings.enableThemeColor}
+        wrap = |
+    }
+
+    themeColor = TEXT
+    themeColor {
+        value = {$ns_timeline.website.settings.themeColor}
+        wrap = |
+    }
+}
+
