@@ -36,8 +36,12 @@ final class NewContentElementPreviewRenderer
             }
 
             $options = [];
-            $flexFormAsArray = GeneralUtility::xml2array($row['pi_flexform']);
-            $mynormalVariation = $flexFormAsArray['data']['sDEF']['lDEF']['normalVariation']['vDEF'];   // Get Standard Type Values
+            $flexFormAsArray = !empty($row['pi_flexform']) ? GeneralUtility::xml2array((string)$row['pi_flexform']) : [];
+            $mynormalVariation = $flexFormAsArray['data']['sDEF']['lDEF']['normalVariation']['vDEF'] ?? '';   // Get Standard Type Values
+
+            if (empty($mynormalVariation)) {
+                return;
+            }
 
             if ($versionNumber['version_main'] <= '13') {
                 $view = $this->getFluidTemplateOld($extKey, $mynormalVariation);

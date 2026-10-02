@@ -43,7 +43,7 @@ class DefaultProcessor implements DataProcessorInterface
     protected function getOptionsFromFlexFormData(array $row)
     {
         $options = [];
-        $flexFormAsArray = GeneralUtility::xml2array($row['pi_flexform']);
+        $flexFormAsArray = !empty($row['pi_flexform']) ? GeneralUtility::xml2array((string)$row['pi_flexform']) : [];
         if (isset($flexFormAsArray['data']) && is_array($flexFormAsArray['data'])) {
             foreach ($flexFormAsArray['data'] as $base) {
                 if (!empty($base['lDEF']) && is_array($base['lDEF'])) {
