@@ -6,7 +6,7 @@ on:
   issue_comment:
     types: [created]
   pull_request:
-    types: [opened, edited, synchronize, reopened, closed, ready_for_review, converted_to_draft]
+    types: [opened, ready_for_review, closed]
   pull_request_review:
     types: [submitted, edited]
 
